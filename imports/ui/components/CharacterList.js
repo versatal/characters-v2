@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import { Characters } from '../../api/characters';
+import CharacterListItem from './CharacterListItem';
 
 export const CharacterList = (props) => {
   
@@ -13,9 +14,8 @@ export const CharacterList = (props) => {
           Meteor.call('characters.insert')
         }}>Create Character</button>
       </div>    
-      <p>Character List</p>
       {props.characters.map(character => {
-        return <p key={character._id}>a character</p>
+        return <CharacterListItem key={character._id} character={character} history={props.appProps.history}/>
       })}
     </div>
   );

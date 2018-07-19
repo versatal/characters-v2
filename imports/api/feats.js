@@ -2,29 +2,28 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 
-export const Characters = new Mongo.Collection('characters');
+export const Feats = new Mongo.Collection('feats');
 
 if (Meteor.isServer) {
-  Meteor.publish('characters', function () {
-    return Characters.find({ userId: this.userId });
+  Meteor.publish('feats', function () {
+    return Feats.find();
   });
 }
 
 Meteor.methods({
-  'characters.insert'() {
+  'feats.insert'() {
     
     if (!this.userId) {
       throw new Meteor.Error('not authorized');
     }
 
-    return Characters.insert({
-      name: 'New Character',
+    return Feats.insert({
+      name: '',
       description: '',
-      userId: this.userId,
       updatedAt: Date.now()
     })
   },
-  'characters.remove'(_id) {
+  'feats.remove'(_id) {
     if (!this.userId) {
       throw new Meteor.Error('not authorized');
     }
@@ -36,9 +35,9 @@ Meteor.methods({
       }
     }).validate({ _id })
     
-    Characters.remove({ _id, userId: this.userId })
+    Feats.remove({ _id })
   },
-  'characters.update'(_id, updates) {
+  'feats.update'(_id, updates) {
     if (!this.userId) {
       throw new Meteor.Error('not authorized');
     }
@@ -60,9 +59,8 @@ Meteor.methods({
       ...updates
     });
 
-    Characters.update({
-      _id,
-      userId: this.userId
+    Feats.update({
+      _id
     }, {
       $set: {
         updatedAt: Date.now(),

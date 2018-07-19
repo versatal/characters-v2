@@ -1,9 +1,8 @@
 import React from 'react';
 
 import PrivateHeader from '../components/PrivateHeader';
-import CharacterList from '../components/CharacterList';
-import Editor from '../components/Editor';
-
+import FeatList from '../components/FeatList';
+import FeatEditor from '../components/FeatEditor';
 
 export default (props) => {
   return (
@@ -11,10 +10,10 @@ export default (props) => {
       <PrivateHeader title="Characters" appProps={props}/>
       <div className="page-content">
         <div className="page-content__sidebar">
-          <CharacterList appProps={props}/>
+          <FeatList appProps={props}/>
         </div>
         <div className="page-content__main">
-          <Editor appProps={props}/>
+          <FeatEditor appProps={props}/>
         </div>
       </div>
     </div>
