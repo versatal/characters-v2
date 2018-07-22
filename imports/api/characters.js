@@ -20,6 +20,7 @@ Meteor.methods({
     return Characters.insert({
       name: 'New Character',
       description: '',
+      feats: [],
       userId: this.userId,
       updatedAt: Date.now()
     })
@@ -67,6 +68,33 @@ Meteor.methods({
       $set: {
         updatedAt: Date.now(),
         ...updates
+      }
+    })
+  },
+  'characters.updateFeats'(_id, feat) {
+    if (!this.userId) {
+      throw new Meteor.Error('not authorized');
+    }
+    new SimpleSchema({
+      _id: {
+        type: String,
+        min: 2
+      },
+      feat: {
+        type: String,
+        optional: true
+      }
+    }).validate({
+      _id,
+      feat
+    });
+
+    Characters.update({
+      _id,
+      userId: this.userId
+    }, {
+      $push: {
+        feats: feat
       }
     })
   }

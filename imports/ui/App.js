@@ -8,14 +8,12 @@ import Public from './pages/Public';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Index from './pages/Index';
 import Admin from './pages/Admin';
 
 const App = appProps => (
   <Router>
     <Switch>
-      <Route path="/" exact component={Index}/>
-      <Public path="/login" component={Login} {...appProps}/>
+      <Public exact path="/" component={Login} {...appProps}/>
       <Public path="/signup" component={Signup} {...appProps}/>
       <Authenticated exact path="/admin" component={Admin} {...appProps}/>
       <Authenticated exact path="/admin/:id" component={Admin} {...appProps}/>

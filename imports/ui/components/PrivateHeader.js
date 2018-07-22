@@ -11,7 +11,7 @@ export class PrivateHeader extends React.Component {
 
   handleLogout () {
     Accounts.logout();
-    this.props.appProps.history.replace('/login');
+    this.props.appProps.history.replace('/');
   }
 
   handleNavToggle () {

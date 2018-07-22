@@ -24,7 +24,7 @@ export default class Signup extends React.Component {
         this.setState({error: err.reason});
       } else {
         this.setState({error: ''});
-        this.props.history.replace('/login');
+        this.props.history.replace('/');
       }
     });
   }
@@ -42,7 +42,7 @@ export default class Signup extends React.Component {
             <button className="button">Create Account</button>
           </form>
 
-          <Link to="/login">Have an account?</Link>
+          <Link to="/">Have an account?</Link>
         </div>
       </div>
     );

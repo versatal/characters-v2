@@ -7,6 +7,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.item-list__editor {
+  width: 40%;
+  margin-bottom: $space;
+  padding: $space;
+}
+
 .item-list__header {
   display: flex;
   flex-direction: column;
